@@ -2,8 +2,14 @@
 
 CoreSync OS is a modern, fast, and interactive web-based Inventory and ERP (Enterprise Resource Planning) management system. Built with a sleek Glassmorphism UI, it provides a seamless experience for managing stock receipts, warehouses, and storage locations.
 
-### 🚀 Live Demo
-**[Click here to view the live website] (Insert_Your_Live_Link_Here)**
+---
+
+## 🚀 Quick Start (How to Run Locally)
+
+1. Open the project folder in **VS Code**.
+2. Install the **"Live Server"** extension if you haven't already.
+3. Right-click on `dashboard.html` and select **"Open with Live Server"**.
+4. This will provide a hot-reloading development environment.
 
 ---
 
@@ -21,7 +27,7 @@ CoreSync OS is a modern, fast, and interactive web-based Inventory and ERP (Ente
 
 ## 🛠️ Tech Stack
 
-This project is built purely with native web technologies to ensure maximum performance and zero dependency overhead.
+Built to ensure maximum performance and zero dependency overhead:
 * **HTML5:** Semantic and accessible structure.
 * **CSS3:** Custom variables, Flexbox/Grid, and Print media queries for PDF generation.
 * **Vanilla JavaScript (ES6+):** DOM manipulation, event delegation, array filtering, and Drag & Drop API.
@@ -33,7 +39,6 @@ This project is built purely with native web technologies to ensure maximum perf
 
 ```text
 coresync/
-├── index.html           # Landing Page / Login (Future scope)
 ├── dashboard.html       # Main Dashboard view
 ├── receipts.html        # Stock In / Receipts management (List + Kanban)
 ├── receipts.css         # Styling for Receipts & Document Printer
