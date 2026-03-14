@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warehouses | CoreSync OS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="warehouses.css">
+</head>
+<body>
+
+    <main class="main-content">
+        <div class="bg-glow"></div>
+
+        <header class="top-navbar">
+            <div class="nav-left">
+                <div class="logo">
+                    <i class="fa-solid fa-boxes-stacked"></i>
+                    <span>CoreSync</span>
+                </div>
+                <nav class="horizontal-menu">
+                    <a href="dashboard.html" class="nav-link">Dashboard</a>
+                    <div class="nav-dropdown">
+                        <button class="nav-link dropdown-btn">
+                            Operations <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                        <div class="dropdown-glass-menu">
+                            <a href="receipts.html"><i class="fa-solid fa-arrow-down-to-bracket text-green"></i> Receipts</a>
+                            <a href="#"><i class="fa-solid fa-truck-fast text-blue"></i> Delivery</a>
+                            <a href="#"><i class="fa-solid fa-sliders text-orange"></i> Adjustments</a>
+                        </div>
+                    </div>
+                    <a href="#" class="nav-link">Live Stock</a>
+                    <a href="#" class="nav-link">Move History</a>
+                    
+                    <div class="nav-dropdown">
+                        <button class="nav-link active dropdown-btn">
+                            Settings <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                        <div class="dropdown-glass-menu">
+                            <a href="#" class="active-sub"><i class="fa-solid fa-warehouse text-blue"></i> Warehouses</a>
+                            <a href="locations.html"><i class="fa-solid fa-location-dot text-orange"></i> Locations</a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            
+            <div class="nav-right">
+                <div class="profile-wrapper">
+                    <div class="avatar-circle" id="profileAvatar">JD</div>
+                    <div class="profile-popup" id="profilePopup">
+                        <div class="user-info-header">
+                            <div class="avatar-large">JD</div>
+                            <div>
+                                <h4 class="user-name">John Doe</h4>
+                                <p class="user-role">Warehouse Manager</p>
+                            </div>
+                        </div>
+                        <div class="user-details-list">
+                            <div class="detail-item"><i class="fa-solid fa-envelope"></i> john.doe@coresync.com</div>
+                            <div class="detail-item"><i class="fa-solid fa-phone"></i> +91 98765 43210</div>
+                        </div>
+                        <div class="popup-footer">
+                            <button id="logoutBtn" class="logout-btn"><i class="fa-solid fa-arrow-right-from-bracket"></i> Log Out</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="sub-navbar">
+            <div class="sub-nav-left">
+                <h2 class="page-title">Warehouses</h2>
+                <button id="btnNewWarehouse" class="btn-primary-sm">
+                    <i class="fa-solid fa-plus"></i> Add Warehouse
+                </button>
+            </div>
+            <div class="sub-nav-right">
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Search warehouses...">
+                </div>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table class="modern-table">
+                <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Warehouse Name</th>
+                        <th>Address</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="warehouseTableBody">
+                    </tbody>
+            </table>
+            
+            <div id="emptyState" class="empty-state hidden">
+                <i class="fa-solid fa-building empty-icon"></i>
+                <h3>No Warehouses Setup</h3>
+                <p>Click "Add Warehouse" to create your first storage location.</p>
+            </div>
+        </div>
+    </main>
+
+    <div id="warehouseModal" class="custom-modal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3>Add New Warehouse</h3>
+                <button id="closeModal" class="close-btn"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            
+            <form id="warehouseForm" class="modal-body">
+                <div class="form-row">
+                    <div class="input-group">
+                        <label>Warehouse Name *</label>
+                        <input type="text" id="whName" placeholder="e.g. Central Godown" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Warehouse Code *</label>
+                        <input type="text" id="whCode" placeholder="e.g. WH-CEN" required style="text-transform: uppercase;">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="input-group" style="flex: 1;">
+                        <label>Complete Address *</label>
+                        <textarea id="whAddress" rows="4" placeholder="Enter full address, city, state, pincode..." required class="custom-textarea"></textarea>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" id="cancelModal" class="btn-dark">Cancel</button>
+                    <button type="submit" class="btn-primary-sm"><i class="fa-solid fa-check"></i> Save Warehouse</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="warehouses.js"></script>
+</body>
+</html>
