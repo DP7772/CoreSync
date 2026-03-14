@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receipts | CoreSync OS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="receipts.css">
+</head>
+<body>
+
+    <main class="main-content">
+        <div class="bg-glow"></div>
+
+        <header class="top-navbar">
+            <div class="nav-left">
+                <div class="logo">
+                    <i class="fa-solid fa-boxes-stacked"></i>
+                    <span>CoreSync</span>
+                </div>
+                <nav class="horizontal-menu">
+                    <a href="dashboard.html" class="nav-link">Dashboard</a>
+                    <div class="nav-dropdown">
+                        <button class="nav-link active dropdown-btn">
+                            Operations <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                        <div class="dropdown-glass-menu">
+                            <a href="#" class="active-sub"><i class="fa-solid fa-arrow-down-to-bracket text-green"></i> Receipts</a>
+                            <a href="#"><i class="fa-solid fa-truck-fast text-blue"></i> Delivery</a>
+                            <a href="#"><i class="fa-solid fa-sliders text-orange"></i> Adjustments</a>
+                        </div>
+                    </div>
+                    <a href="#" class="nav-link">Live Stock</a>
+                    <a href="#" class="nav-link">Move History</a>
+                    <a href="#" class="nav-link">Settings</a>
+                </nav>
+            </div>
+            <div class="nav-right">
+                <div class="profile-wrapper">
+                    <div class="avatar-circle" id="profileAvatar">JD</div>
+                    
+                    <div class="profile-popup" id="profilePopup">
+                        <div class="user-info-header">
+                            <div class="avatar-large">JD</div>
+                            <div>
+                                <h4 class="user-name">John Doe</h4>
+                                <p class="user-role">Warehouse Manager</p>
+                            </div>
+                        </div>
+                        <div class="user-details-list">
+                            <div class="detail-item">
+                                <i class="fa-solid fa-envelope"></i> john.doe@coresync.com
+                            </div>
+                            <div class="detail-item">
+                                <i class="fa-solid fa-phone"></i> +91 98765 43210
+                            </div>
+                        </div>
+                        <div class="popup-footer">
+                            <button id="logoutBtn" class="logout-btn">
+                                <i class="fa-solid fa-arrow-right-from-bracket"></i> Log Out
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="sub-navbar">
+            <div class="sub-nav-left">
+                <h2 class="page-title">Receipts</h2>
+                <button id="btnNewReceipt" class="btn-primary-sm">
+                    <i class="fa-solid fa-plus"></i> New
+                </button>
+            </div>
+            <div class="sub-nav-right">
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Search receipts...">
+                </div>
+                <button id="btnKanbanView" class="icon-btn" title="Kanban View">
+                    <i class="fa-solid fa-table-columns"></i>
+                </button>
+                <button id="btnListView" class="icon-btn active" title="List View">
+                    <i class="fa-solid fa-list-ul"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="viewList" class="table-container">
+            <table class="modern-table">
+                <thead>
+                    <tr>
+                        <th>Reference</th>
+                        <th>Supplier Name</th>
+                        <th>Warehouse</th>
+                        <th>Schedule Date</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="receiptTableBody"></tbody>
+            </table>
+            <div id="emptyState" class="empty-state hidden">
+                <i class="fa-solid fa-box-open empty-icon"></i>
+                <h3>No Receipts Found</h3>
+                <p>Click "New" to create your first stock receipt.</p>
+            </div>
+        </div>
+
+        <div id="viewKanban" class="kanban-container hidden">
+            <div class="kanban-column" data-status="Draft">
+                <div class="column-header">
+                    <span class="badge badge-draft">Draft</span>
+                    <span class="card-count" id="countDraft">0</span>
+                </div>
+                <div class="column-body dropzone" id="colDraft"></div>
+            </div>
+            <div class="kanban-column" data-status="Ready">
+                <div class="column-header">
+                    <span class="badge badge-ready">Ready</span>
+                    <span class="card-count" id="countReady">0</span>
+                </div>
+                <div class="column-body dropzone" id="colReady"></div>
+            </div>
+            <div class="kanban-column" data-status="Done">
+                <div class="column-header">
+                    <span class="badge badge-done">Done</span>
+                    <span class="card-count" id="countDone">0</span>
+                </div>
+                <div class="column-body dropzone" id="colDone"></div>
+            </div>
+        </div>
+
+        <div id="viewDetail" class="detail-container hidden">
+            <div class="detail-action-bar">
+                <div class="action-left">
+                    <button id="btnValidate" class="btn-success"><i class="fa-solid fa-check-double"></i> Validate</button>
+                    <button id="btnPrint" class="btn-blue"><i class="fa-solid fa-print"></i> Print to PDF</button>
+                </div>
+                <div class="action-right">
+                    <button id="btnCancelDetail" class="btn-dark"><i class="fa-solid fa-arrow-left"></i> Back to List</button>
+                </div>
+            </div>
+            <div class="document-wrapper">
+                <div class="document-paper" id="printableDocument">
+                    <div class="doc-header">
+                        <div class="doc-logo"><i class="fa-solid fa-boxes-stacked text-blue"></i> CoreSync</div>
+                        <div class="doc-title">RECEIPT VOUCHER</div>
+                    </div>
+                    <div class="doc-info-grid">
+                        <div class="info-group">
+                            <label>Reference No:</label>
+                            <h4 id="docRef" class="text-blue"></h4>
+                        </div>
+                        <div class="info-group text-right">
+                            <label>Schedule Date:</label>
+                            <h4 id="docDate"></h4>
+                        </div>
+                        <div class="info-group">
+                            <label>Receive From:</label>
+                            <h4 id="docSupplier"></h4>
+                        </div>
+                        <div class="info-group text-right">
+                            <label>Responsible:</label>
+                            <h4>John Doe</h4>
+                        </div>
+                        <div class="info-group">
+                            <label>Supplier Bill No:</label>
+                            <h4 id="docBillNo"></h4>
+                        </div>
+                        <div class="info-group text-right">
+                            <label>Status:</label>
+                            <h4 id="docStatus"></h4>
+                        </div>
+                    </div>
+                    <div class="doc-body">
+                        <p class="doc-intro">The following items have been processed under this receipt voucher:</p>
+                        <table class="doc-table">
+                            <thead>
+                                <tr><th>Product Description</th><th>Expected Qty</th><th>Received Qty</th><th>Unit</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><strong>Steel Rods (10mm)</strong><br><small>Premium grade building material</small></td><td>500</td><td>500</td><td>Kg</td></tr>
+                                <tr><td><strong>Cement Bags (Ultra)</strong><br><small>Waterproof packaging</small></td><td>120</td><td>120</td><td>Bags</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="doc-footer">
+                        <p class="outro-msg">"Thank you for your business. All goods are inspected and verified upon arrival."</p>
+                        <div class="signature-line">Authorized Signatory</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="receiptModal" class="custom-modal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3>Create New Receipt</h3>
+                <button id="closeModal" class="close-btn"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form id="receiptForm" class="modal-body">
+                <div class="form-row">
+                    <div class="input-group">
+                        <label>Receipt Reference</label>
+                        <input type="text" id="refId" readonly class="readonly-input">
+                    </div>
+                    <div class="input-group">
+                        <label>Supplier Name *</label>
+                        <input type="text" id="supplierName" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="input-group">
+                        <label>Destination Warehouse *</label>
+                        <select id="warehouse" required>
+                            <option value="Main Godown">Main Godown</option>
+                            <option value="Retail Store">Retail Store</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Supplier Bill No.</label>
+                        <input type="text" id="supplierRef">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="input-group">
+                        <label>Scheduled Date *</label>
+                        <input type="date" id="scheduleDate" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Status *</label>
+                        <select id="status" required>
+                            <option value="Draft">Draft</option>
+                            <option value="Ready">Ready</option>
+                            <option value="Done">Done</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="cancelModal" class="btn-dark">Cancel</button>
+                    <button type="submit" class="btn-primary-sm"><i class="fa-solid fa-check"></i> Save Receipt</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="actionAlertModal" class="custom-modal">
+        <div class="modal-box alert-box" style="max-width: 450px; text-align: center; padding: 3rem 2rem;">
+            <div id="alertIcon" class="alert-icon" style="font-size: 4rem; margin-bottom: 1rem;"></div>
+            <h3 id="alertTitle" style="font-size: 1.5rem; margin-bottom: 1rem;"></h3>
+            <p id="alertMessage" style="color: var(--text-muted); line-height: 1.6; margin-bottom: 2rem;"></p>
+            <button id="btnGotIt" class="btn-primary-sm" style="margin: 0 auto; width: 150px; justify-content: center;">Got it</button>
+        </div>
+    </div>
+
+    <script src="receipts.js"></script>
+</body>
+</html>

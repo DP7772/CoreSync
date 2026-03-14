@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoreSync | Smart Inventory OS</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fa-solid fa-boxes-stacked text-blue"></i>
+            <h1>CoreSync</h1>
+        </div>
+        <button class="btn-dark auth-trigger">Open Dashboard <i class="fa-solid fa-arrow-right"></i></button>
+    </nav>
+
+    <header class="hero">
+        <div class="badge">🚀 THE ULTIMATE INVENTORY OS</div>
+        <h2 class="hero-title">Your Entire Business, <br> <span class="text-gradient">Live on your Screen.</span></h2>
+        <p class="hero-subtitle">Stop relying on messy registers. Track every item coming in, going out, or moving around your godowns with absolute precision.</p>
+    </header>
+
+    <section class="demo-section">
+        <div class="demo-container">
+            
+            <div class="demo-content">
+                <div class="demo-label"><i class="fa-solid fa-gamepad"></i> Try The Live Simulator</div>
+                <h3 class="premium-heading">Test drive your warehouse.</h3>
+                <p class="premium-text">Click the buttons below to see how instantly CoreSync updates your entire business records. No page reloads, just pure speed.</p>
+                
+                <div class="action-grid">
+                    <button id="btn-receive" class="action-btn btn-green">
+                        <i class="fa-solid fa-arrow-down-to-bracket"></i> Receive Stock
+                    </button>
+                    <button id="btn-dispatch" class="action-btn btn-blue">
+                        <i class="fa-solid fa-truck-fast"></i> Dispatch Order
+                    </button>
+                    <button id="btn-transfer" class="action-btn btn-orange">
+                        <i class="fa-solid fa-right-left"></i> Transfer Location
+                    </button>
+                </div>
+            </div>
+
+            <div class="demo-card-wrapper">
+                <div class="demo-card-glow"></div>
+                <div class="demo-card">
+                    <div class="kpi-header">
+                        <div>
+                            <p class="kpi-label">Total Items in System</p>
+                            <h4 id="totalStock" class="kpi-value">12,450</h4>
+                        </div>
+                    </div>
+                    
+                    <div class="kpi-list">
+                        <div class="kpi-list-item">
+                            <div class="flex-align"><i class="fa-solid fa-clock text-yellow"></i> <span>Pending Receipts</span></div>
+                            <span id="pendingReceipts" class="kpi-bold">4 Trucks</span>
+                        </div>
+                        <div class="kpi-list-item">
+                            <div class="flex-align"><i class="fa-solid fa-box-open text-blue"></i> <span>Orders Dispatched Today</span></div>
+                            <span id="dispatchedOrders" class="kpi-bold">28 Orders</span>
+                        </div>
+                    </div>
+
+                    <div class="live-log-container">
+                        <p class="kpi-label">Live Activity Stream</p>
+                        <div id="live-log" class="live-log-box">
+                            <i class="fa-solid fa-circle-dot blink-green"></i> System ready and watching...
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <section class="flashcards-section">
+        <div class="flashcards-header">
+            <div class="demo-label" style="justify-content: center;"><i class="fa-solid fa-lightbulb"></i> Why Switch to CoreSync?</div>
+            <h2 class="premium-heading">Say goodbye to daily godown headaches.</h2>
+            <p class="premium-text text-center">Hover over the cards below to see how your life changes.</p>
+        </div>
+
+        <div class="flashcard-grid">
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="icon-circle bg-red"><i class="fa-solid fa-file-excel"></i></div>
+                        <h3>Daily Stock Counting</h3>
+                        <p class="hint-text">Hover to reveal magic <i class="fa-solid fa-arrow-right"></i></p>
+                    </div>
+                    <div class="flip-card-back bg-green-gradient">
+                        <i class="fa-solid fa-check-circle back-icon"></i>
+                        <h3>Instant Live Numbers</h3>
+                        <p>No more counting boxes at 8 PM. Open your phone and know exactly what's in stock, down to the last piece.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="icon-circle bg-orange"><i class="fa-solid fa-box-open"></i></div>
+                        <h3>Missing & Lost Items</h3>
+                        <p class="hint-text">Hover to reveal magic <i class="fa-solid fa-arrow-right"></i></p>
+                    </div>
+                    <div class="flip-card-back bg-blue-gradient">
+                        <i class="fa-solid fa-location-dot back-icon"></i>
+                        <h3>Tracked to the Exact Rack</h3>
+                        <p>Every item has a digital footprint. Know exactly which godown and which shelf an item is sitting on.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="icon-circle bg-gray"><i class="fa-solid fa-users"></i></div>
+                        <h3>Confusing Software</h3>
+                        <p class="hint-text">Hover to reveal magic <i class="fa-solid fa-arrow-right"></i></p>
+                    </div>
+                    <div class="flip-card-back bg-purple-gradient">
+                        <i class="fa-solid fa-face-smile back-icon"></i>
+                        <h3>Zero Training Needed</h3>
+                        <p>It’s as easy as using WhatsApp. Your new warehouse helper can start receiving and dispatching on Day 1.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2 class="hero-title" style="font-size: 3rem; color: white;">Ready to digitize your godown?</h2>
+        <p class="premium-text" style="color: #cbd5e1; margin-bottom: 2rem;">Join hundreds of smart business owners who have upgraded their inventory tracking.</p>
+        <button class="btn-primary btn-large auth-trigger" style="background-color: white; color: var(--blue-600);">Start Your Free Trial Now</button>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="logo">
+                    <i class="fa-solid fa-boxes-stacked text-blue"></i>
+                    <h1 style="color: white;">CoreSync</h1>
+                </div>
+                <p>The smartest, easiest inventory operating system designed for modern businesses.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Product</h4>
+                <a href="#">Features</a>
+                <a href="#">Pricing</a>
+                <a href="#">Live Demo</a>
+            </div>
+            <div class="footer-links">
+                <h4>Resources</h4>
+                <a href="#">Help Center</a>
+                <a href="#">Video Guides</a>
+                <a href="#">Contact Support</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 CoreSync Systems. All rights reserved.</p>
+            <div class="social-links">
+                <i class="fa-brands fa-twitter"></i>
+                <i class="fa-brands fa-linkedin"></i>
+                <i class="fa-brands fa-youtube"></i>
+            </div>
+        </div>
+    </footer>
+
+    <div id="authModal" class="auth-modal">
+        <div class="auth-box">
+            <button id="closeAuth" class="close-btn"><i class="fa-solid fa-xmark"></i></button>
+            
+            <div class="auth-header">
+                <i class="fa-solid fa-layer-group text-blue" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                <h2 id="authTitle" class="premium-heading" style="font-size: 1.8rem;">Welcome Back</h2>
+                <p class="premium-text" style="font-size: 0.95rem; margin-bottom: 1.5rem;">Enter your details to proceed.</p>
+            </div>
+
+            <div class="auth-toggle">
+                <div id="toggleBg" class="toggle-bg"></div>
+                <button id="tabLogin" class="toggle-btn active">Log In</button>
+                <button id="tabSignup" class="toggle-btn">Sign Up</button>
+            </div>
+
+            <div class="auth-slider-window">
+                <div id="authSlider" class="auth-slider">
+                    
+                    <form id="loginForm" class="auth-form">
+                        <div class="input-group">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input type="email" placeholder="Email Address" required>
+                        </div>
+                        <div class="input-group">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" placeholder="Password" required>
+                        </div>
+                        <div class="forgot-password">
+                            <a href="#">Forgot password?</a>
+                        </div>
+                        <button type="submit" class="btn-primary w-100 mt-2">Log In to CoreSync</button>
+                    </form>
+
+                    <form id="signupForm" class="auth-form">
+                        <div class="input-row">
+                            <div class="input-group">
+                                <i class="fa-solid fa-user"></i>
+                                <input type="text" placeholder="First Name" required>
+                            </div>
+                            <div class="input-group">
+                                <input type="text" placeholder="Last Name" required>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input type="email" placeholder="Work Email" required>
+                        </div>
+                        <div class="input-group">
+                            <i class="fa-solid fa-phone"></i>
+                            <input type="tel" placeholder="Phone Number" required>
+                        </div>
+                        <div class="input-row">
+                            <div class="input-group">
+                                <i class="fa-solid fa-lock"></i>
+                                <input type="password" placeholder="Password" required>
+                            </div>
+                            <div class="input-group">
+                                <i class="fa-solid fa-shield-check"></i>
+                                <input type="password" placeholder="Confirm" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-primary w-100 mt-2">Create Account</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="toastNotification" class="toast-notification">
+        <div class="toast-icon"><i class="fa-solid fa-bell text-blue"></i></div>
+        <div class="toast-content">
+            <h4>Account Created!</h4>
+            <p>Welcome to CoreSync. You can now log in.</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
